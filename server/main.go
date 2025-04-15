@@ -12,7 +12,7 @@ const (
 	port = ":8080"
 )
 
-type HelloServer struct {
+type helloServer struct {
 	pb.GreetServiceServer
 }
 
@@ -22,7 +22,7 @@ func main() {
 		log.Fatalf("failed to listen: %v", err)
 	}
 	grpcServer := grpc.NewServer()
-	pb.RegisterGreetServiceServer(grpcServer, &HelloServer{})
+	pb.RegisterGreetServiceServer(grpcServer, &helloServer{})
 	log.Printf("server started at %v", lis.Addr())
 	if err := grpcServer.Serve(lis); err != nil {
 		log.Fatalf("Failed to start: %v", err)
