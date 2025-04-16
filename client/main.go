@@ -17,14 +17,16 @@ func main() {
 	if err != nil {
 		log.Fatalf("did not connect : %v", err)
 	}
-
 	defer conn.Close()
 
 	client := pb.NewGreetServiceClient(conn)
 
-	// names := &pb.NamesList{
-	// 	Names: []string{"Siddharth", "Alice", "Bob"},
-	// }
+	names := &pb.NamesList{
+		Names: []string{"Akhil", "Alice", "Bob"},
+	}
 
-	callSayHello(client)
+	// callSayHello(client)
+	callSayHelloServerStream(client, names)
+	//callSayHelloClientStream(client, names)
+	// callSayHelloBidirectionalStream(client, names)
 }
